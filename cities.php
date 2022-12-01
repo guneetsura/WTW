@@ -36,7 +36,7 @@ session_start();
             <?php
             // error_reporting(0);
             // ini_set('display_errors', 0);
-            
+
             $background = "";
             $weather = "";
             $error = "";
@@ -86,7 +86,6 @@ session_start();
                     } else {
                         $background = "../assets/spring.jpg";
                     }
-
                 } else {
 
                     $error = "That city does not exist! Please try again";
@@ -94,6 +93,64 @@ session_start();
             }
 
             ?>
+            <div class="weather-details">
+                <div class="city-details">
+                    <h2>
+                        <?php
+                        if ($station) {
+                            echo "Weather in " . $station;
+                        }
+                        ?>
+                    </h2>
+                    <h1>
+                        <?php
+                        if ($station) {
+                            echo $weather;
+                        }
+                        ?>
+                    </h1>
+                    <div class="city-info">
+                        <div class="city-info-1">
+                            <p>
+                                <?php
+                                if ($humid) {
+                                    echo "<img src='https://img.icons8.com/external-vectorslab-flat-vectorslab/53/null/external-humidity-weather-and-season-vectorslab-flat-vectorslab.png' alt='humidity' /> " . $humid . "%";
+                                }
+                                ?>
+                            </p>
+                            <p>
+                                <?php
+                                if ($speed) {
+                                    echo "<img src='https://img.icons8.com/nolan/64/wind.png' alt='wind' /> " . $speed . " m/s";
+                                }
+                                ?>
+                            </p>
+                        </div>
+                        <div class="city-info-2">
+                            <p>
+                                <?php
+                                if ($aqi) {
+                                    echo "<img src='https://img.icons8.com/color-glass/96/null/air-quality.png'/> " . $aqi;
+                                } else {
+                                    echo "N/A";
+                                }
+                                ?>
+                            </p>
+                            <p>
+                                <?php
+                                if ($uvi) {
+                                    echo "<img src='https://img.icons8.com/external-justicon-flat-justicon/64/null/external-uv-index-weather-justicon-flat-justicon.png'/> " . $uvi;
+                                }
+                                ?>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="user-details">
+
+                </div>
+            </div>
             <div class="safety">
                 <h2>Recommendations</h2>
                 <div class="safety-info umbrella">
@@ -146,58 +203,6 @@ session_start();
                     } else {
                         echo ("<span class='recommend'>No</span>");
                     } ?>
-                </div>
-            </div>
-            <div class="weather-details">
-                <div class="city-details" style="background: url($background) no-repeat center center fixed;">
-                    <h2>
-                        <?php
-                        if ($station) {
-                            echo "Weather in " . $station . " " . $weatherType;
-                        }
-                        ?>
-                    </h2>
-                    <h1>
-                        <?php
-                        if ($station) {
-                            echo $weather;
-                        }
-                        ?>
-                    </h1>
-                    <p>
-                        <?php
-                        if ($humid) {
-                            echo "Humidity: " . $humid . "%";
-                        }
-                        ?>
-                    </p>
-                    <p>
-                        <?php
-                        if ($speed) {
-                            echo "Wind Speed: " . $speed . " m/s";
-                        }
-                        ?>
-                    </p>
-                    <p>
-                        <?php
-                        if ($aqi) {
-                            echo "Air Quality: " . $aqi;
-                        } else {
-                            echo "N/A";
-                        }
-                        ?>
-                    </p>
-                    <p>
-                        <?php
-                        if ($uvi) {
-                            echo "UV Index: " . $uvi;
-                        }
-                        ?>
-                    </p>
-
-                </div>
-                <div class="user-details">
-
                 </div>
             </div>
         </div>

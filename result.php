@@ -82,32 +82,7 @@ session_start();
 
             $error = "That city does not exist! Please try again";
         }
-
-        $api_url =  file_get_contents('http://api.waqi.info/search/?token=f642564d9b7aa62e934760cbaf36933754d50956' . '&keyword=' . urlencode($_POST['city']));
-        $response = json_decode($api_url, true);
-        if (isset($response['status']) && $response['status'] == "ok") {
-            $stations = $response['data'];
-            foreach ($station as $stations) {
-                $air_quality = ($stations['aqi'] == '-') ? 'N/A' : $stations['aqi'];
-                if ($air_quality == 'N/A') {
-                    $class = 'gray';
-                } else if ($air_quality < 51) {
-                    $class = "green";
-                } else if ($air_quality > 50 && $air_quality < 100) {
-                    $class = "yellow";
-                } else if ($air_quality > 101 && $air_quality < 150) {
-                    $class = "orange";
-                } else if ($air_quality > 150 && $air_quality < 200) {
-                    $class = "red";
-                } else if ($air_quality > 200 && $air_quality < 300) {
-                    $class = "redder";
-                } else if ($air_quality > 300) {
-                    $class = "reddest";
-                }
-                $updated_at = $stations['time']['stime'];
-                $station_name = $stations['station']['name'];
-            }
-        }
+        
     }
 
     echo $air_quality;
