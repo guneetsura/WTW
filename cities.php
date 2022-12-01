@@ -47,9 +47,9 @@ session_start();
                 $station = $_POST['city'];
             }
 
-            if ($_POST['city'] or $station) {
+            if ($station) {
 
-                $urlContents = file_get_contents("https://api.openweathermap.org/data/2.5/weather?q=" . urlencode($station) . ",&units=metric&appid=074d5c5ffeea065ccae7fd29942036c0");
+                $urlContents = file_get_contents("https://api.openweathermap.org/data/2.5/weather?q=" . urlencode($station) . "&units=metric&appid=074d5c5ffeea065ccae7fd29942036c0");
 
                 $weatherArray = json_decode($urlContents, true);
 
