@@ -69,6 +69,33 @@ header {
 	transition: all 0.3s ease 0s;
 }
 
+.account-btn {
+	border: none;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.account-btn img {
+	width: 2.5vw;
+	height: 2.5vw;
+	object-fit: contain;
+}
+
+.logout-btn {
+	background: #FFF;
+}
+
+.logout-btn img {
+	background: #FFF;
+}
+
+.account-btn:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
 .btn:hover {
 	background-color: rgba(0, 0, 0, 0.5);
 }

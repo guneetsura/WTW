@@ -1,14 +1,6 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', 0);
-set_error_handler(function (int $errno, string $errstr) {
-    if ((strpos($errstr, 'Undefined array key') === false) && (strpos($errstr, 'Undefined variable') === false)) {
-        return false;
-    } else {
-        return true;
-    }
-}, E_WARNING);
-$s = $_SESSION['email'];
+
+
 
 // if (isset($_POST['logout'])){
 
@@ -39,11 +31,20 @@ $s = $_SESSION['email'];
             </nav>
             <div class="btn-ln">
                 <?php
-                if ($s) {
+                error_reporting(0);
+                ini_set('display_errors', 0);
+                set_error_handler(function (int $errno, string $errstr) {
+                    if ((strpos($errstr, 'Undefined array key') === false) && (strpos($errstr, 'Undefined variable') === false)) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }, E_WARNING);
+                if (isset($_SESSION['email'])) {
 
                     echo "
-                    <a href='logout.php' class='login'><button type='submit' class='login-btn btn'>Logout</button></a>
-                    <a href='account.php'><button class='signup-btn btn'>My Account</button></a>";
+                    <a href='account.php'><button class='account-btn'><img src='https://img.icons8.com/material-outlined/96/null/user--v1.png'/></button></a>
+                    <a href='logout.php' class='login'><button type='submit' class='account-btn logout'><img src='https://img.icons8.com/external-sbts2018-blue-sbts2018/58/null/external-logout-social-media-basic-1-sbts2018-blue-sbts2018.png'/></button></a>";
                 } else {
                     echo "<a class='login' href='login.php'><button class='login-btn btn'>Login</button></a>
                             <a href='register.php'><button class='signup-btn btn'>Sign Up</button></a>";
