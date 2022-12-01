@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +7,10 @@ session_start();
     </title>
     <link rel="stylesheet" type="text/css" href="./styles/cities.css">
 </head>
-
+<?php
+    require 'config.php';
+    $s = $_SESSION['email'];
+?>
 <body>
     <?php include './header.php' ?>
     <?php
@@ -34,9 +34,6 @@ session_start();
         </form>
         <div class="w-dashboard">
             <?php
-            // error_reporting(0);
-            // ini_set('display_errors', 0);
-
             $background = "";
             $weather = "";
             $error = "";
@@ -89,6 +86,29 @@ session_start();
                 } else {
 
                     $error = "That city does not exist! Please try again";
+                }
+            }
+
+            if (!empty($s)){
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $conn = new PDO("mysql:host=$servername;dbname=weather-sign-up", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "SELECT medical FROM registration WHERE email='$s' ";
+                $result = $conn->query($sql);
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $m = $row["medical"];
+                    $strm= explode(',',$m);
+                                
+                    foreach($strm as $val) {
+                        // echo $val . " ";
+                        if($val=='asthama' && $aqi > 150 ){
+                            $advise="Not Advised to travel!";
+                        }
+            
+                    }
+            
                 }
             }
 
@@ -148,6 +168,18 @@ session_start();
                     </div>
                 </div>
                 <div class="user-details">
+                    <?php
+                     echo $advise;
+                    // $strm= explode(',',$m);
+                    
+                    // foreach($strm as $val) {
+                    //     // echo $val . " ";
+                    //     if($val=='asthama' && $aqi>150){
+                    //         echo "hi";
+                    //     }
+
+                    // }
+                    ?>
 
                 </div>
             </div>
