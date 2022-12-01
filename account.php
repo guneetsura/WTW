@@ -1,5 +1,5 @@
-<?php 
-    session_start();
+<?php
+session_start();
 ?>
 <html>
 
@@ -49,26 +49,26 @@
             foreach ($medical as $med) {
                 $condition .= $med . ",";
             }
-                $s = $_SESSION['email'];
-                $conn1 = new PDO("mysql:host=$servername;dbname=weather-sign-up", $username, $password);
-                $conn1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql3 = "UPDATE registration SET name='$name', medical='$condition', wheelchair = '$wheelchair' WHERE email ='$s';";
-                $conn1->exec($sql3);
+            $s = $_SESSION['email'];
+            $conn1 = new PDO("mysql:host=$servername;dbname=weather-sign-up", $username, $password);
+            $conn1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql3 = "UPDATE registration SET name='$name', medical='$condition', wheelchair = '$wheelchair' WHERE email ='$s';";
+            $conn1->exec($sql3);
 
-                $conn = new PDO("mysql:host=$servername;dbname=weather-sign-up", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "SELECT name,email,password,age,gender,medical,wheelchair FROM registration WHERE email='$s' ";
-                $result = $conn->query($sql);
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $n = $row["name"];
-                    $e = $row["email"];
-                    $a = $row["age"];
-                    $g = $row["gender"];
-                    $m = $row["medical"];
-                    $w = $row["wheelchair"];
-                }
+            $conn = new PDO("mysql:host=$servername;dbname=weather-sign-up", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT name,email,password,age,gender,medical,wheelchair FROM registration WHERE email='$s' ";
+            $result = $conn->query($sql);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $n = $row["name"];
+                $e = $row["email"];
+                $a = $row["age"];
+                $g = $row["gender"];
+                $m = $row["medical"];
+                $w = $row["wheelchair"];
             }
         }
+    }
     //         $medical =$_POST["mmedical"];
     //         $wheelchair =$_POST["yyes_no"];
     //         $s=$_SESSION['email'];
@@ -150,9 +150,8 @@
 
             </fieldset>
             <button type="submit" name="Update" class="submit-btn" id="update">Update</button>
-            <button type="submit" name="Logout" class="submit-btn" id="logout">Logout</button>
+            <a href="logout.php"><button type="submit" name="Logout" class="submit-btn" id="logout">Logout</button></a>
         </form>
-        <span class="text-muted">Already have an account? <a href="login.php">Login</a></span>
     </section>
 
 </body>

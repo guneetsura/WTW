@@ -1,17 +1,3 @@
-<?php
-
-
-
-// if (isset($_POST['logout'])){
-
-//     if ($_SERVER['REQUEST_METHOD']=='POST'){
-//         session_destroy();
-//         header('Location:myaccount.php');
-//         exit();
-//     }
-
-?>
-
 <html>
 
 <head>

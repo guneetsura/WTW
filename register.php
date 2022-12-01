@@ -169,15 +169,15 @@
                 <div class="flex-radio">
                     <div>
                         <label>Check if you have any of the following conditions</label>
-                        <input type="checkbox" id="asthama" value="asthama" name="medical[]"><label class="light" for="asthama">Asthama</label><br>
-                        <input type="checkbox" id="photophobia" value="photophobia" name="medical[]"><label class="light" for="photophobia">Photophobia</label><br>
-                        <input type="checkbox" id="skin_disease" value="skin_disease" name="medical[]"><label class="light" for="skin_disease">Skin disease</label><br>
-                        <input type="checkbox" id="cancer" value="cancer" name="medical[]"><label class="light" for="cancer">Cancer</label><br>
+                        <input type="checkbox" id="asthama" value="Asthama" name="medical[]"><label class="light" for="asthama">Asthama</label><br>
+                        <input type="checkbox" id="photophobia" value="Photophobia" name="medical[]"><label class="light" for="photophobia">Photophobia</label><br>
+                        <input type="checkbox" id="skin_disease" value="Skin Disease" name="medical[]"><label class="light" for="skin_disease">Skin disease</label><br>
+                        <input type="checkbox" id="cancer" value="Cancer" name="medical[]"><label class="light" for="cancer">Cancer</label><br>
                     </div>
                     <div>
                         <label>Are you associated with a wheelchair?</label>
-                        <input type="radio" id="yes" value="yes" name="yes_no"><label class="light" for="yes">Yes</label><br>
-                        <input type="radio" id="no" value="no" name="yes_no"><label class="light" for="no">No</label>
+                        <input type="radio" id="yes" value="yes" name="yes_no"><label class="light" for="Yes">Yes</label><br>
+                        <input type="radio" id="no" value="no" name="yes_no"><label class="light" for="No">No</label>
                     </div>
                 </div>
             </fieldset>

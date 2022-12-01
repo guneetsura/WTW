@@ -186,7 +186,16 @@ input.search-bar {
 }
 
 .user-details {
-    border: 1px solid;
-    height: 30%;
+    height: 35%;
     width: 100%;
+}
+
+.med-alert {
+    font-family: Poppins-Bold;
+    margin-left: 1vw;
+}
+
+.med-alert-msg {
+    font-size: medium;
+    margin-left: 2vw;
 }

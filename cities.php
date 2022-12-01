@@ -8,9 +8,12 @@
     <link rel="stylesheet" type="text/css" href="./styles/cities.css">
 </head>
 <?php
-    require 'config.php';
-    $s = $_SESSION['email'];
+error_reporting(0);
+ini_set('display_errors', 0);
+require 'config.php';
+$s = $_SESSION['email'];
 ?>
+
 <body>
     <?php include './header.php' ?>
     <?php
@@ -89,7 +92,10 @@
                 }
             }
 
-            if (!empty($s)){
+            $advise = "No travel restrictions required.";
+            $medcon = "";
+
+            if (!empty($s)) {
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
@@ -99,16 +105,17 @@
                 $result = $conn->query($sql);
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     $m = $row["medical"];
-                    $strm= explode(',',$m);
-                                
-                    foreach($strm as $val) {
+                    $strm = explode(',', $m);
+
+                    foreach ($strm as $val) {
                         // echo $val . " ";
-                        if($val=='asthama' && $aqi > 150 ){
-                            $advise="Not Advised to travel!";
+                        if ($val == 'Asthama' && $aqi > 150 || $val == 'Skin Disease' && $uvi > 7 || $val == 'Cancer' && $uvi > 7 || $val == 'Photophobia' && $weatherType == 'Sunny') {
+                            $medcon .= $val . ",";
+                            $advise = "Not Advised to travel!";
+                        } else {
+                            $medcon .= $val . ",";
                         }
-            
                     }
-            
                 }
             }
 
@@ -168,19 +175,22 @@
                     </div>
                 </div>
                 <div class="user-details">
-                    <?php
-                     echo $advise;
-                    // $strm= explode(',',$m);
-                    
-                    // foreach($strm as $val) {
-                    //     // echo $val . " ";
-                    //     if($val=='asthama' && $aqi>150){
-                    //         echo "hi";
-                    //     }
-
-                    // }
-                    ?>
-
+                    <p class="med-alert">Alerts</p>
+                    <p class="med-alert-msg">
+                        <?php
+                        if ($medcon) {
+                            $correctMedical = "";
+                            $medi = explode(',', $m);
+                            foreach ($medi as $medval) {
+                                if (!empty($medval)) {
+                                    echo "For " . $medval . ": " . $advise . "<br>";
+                                }
+                            }
+                        } else {
+                            echo $advise;
+                        }
+                        ?>
+                    </p>
                 </div>
             </div>
             <div class="safety">
