@@ -193,9 +193,20 @@ input.search-bar {
 .med-alert {
     font-family: Poppins-Bold;
     margin-left: 1vw;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
 }
 
 .med-alert-msg {
     font-size: medium;
     margin-left: 2vw;
+    display: flex;
+    align-items: center;
+}
+
+.alert-img {
+    width: 2vw;
+    height: 2vw;
+    object-fit: contain;
 }

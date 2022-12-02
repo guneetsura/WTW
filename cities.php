@@ -94,6 +94,7 @@ $s = $_SESSION['email'];
 
             $advise = "No travel restrictions required.";
             $medcon = "";
+            $alertIcon = "";
 
             if (!empty($s)) {
                 $servername = "localhost";
@@ -111,7 +112,8 @@ $s = $_SESSION['email'];
                         // echo $val . " ";
                         if ($val == 'Asthama' && $aqi > 150 || $val == 'Skin Disease' && $uvi > 7 || $val == 'Cancer' && $uvi > 7 || $val == 'Photophobia' && $weatherType == 'Sunny') {
                             $medcon .= $val . ",";
-                            $advise = "<img src='./assets/icons/warning.png' alt='alert' />Not Advised to travel!";
+                            $alertIcon = "<img class='alert-img' src='./assets/icons/warning.png' alt='alert' />";
+                            $advise = "Not Advised to travel!";
                         } else {
                             $medcon .= $val . ",";
                         }
@@ -175,19 +177,18 @@ $s = $_SESSION['email'];
                     </div>
                 </div>
                 <div class="user-details">
-                    <p class="med-alert">Alerts</p>
-                    <p class="med-alert-msg">
+                    <p class="med-alert">Alerts <?php if($alertIcon) { echo $alertIcon; } ?></p>
                         <?php
                         if ($medcon) {
                             $correctMedical = "";
                             $medi = explode(',', $m);
                             foreach ($medi as $medval) {
                                 if (!empty($medval)) {
-                                    echo "For " . $medval . ": " . $advise . "<br>";
+                                    echo "<p class='med-alert-msg'>For " . $medval . ": " . $advise . "</p>";
                                 }
                             }
                         } else {
-                            echo $advise;
+                            echo "<p class='med-alert-msg'>" . $advise . "</p>";
                         }
                         ?>
                     </p>
