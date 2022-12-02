@@ -154,9 +154,9 @@
                     </div>
                     <div>
                         <label>Age: <span>* <?php echo $ageErr; ?></span></label>
-                        <input type="radio" id="under_18" value="under_18" name="age"><label for="under_18" class="light">Under 18</label><br>
-                        <input type="radio" id="over_18" value="over_18" name="age"><label for="over_18" class="light">Adult (18 or Older)</label><br>
-                        <input type="radio" id="senior" value="senior" name="age"><label for="senior" class="light">Senior (60 or older)</label>
+                        <input type="radio" id="under_18" value="Under 18" name="age"><label for="under_18" class="light">Under 18</label><br>
+                        <input type="radio" id="over_18" value="Above 18" name="age"><label for="over_18" class="light">Adult (18 or Older)</label><br>
+                        <input type="radio" id="senior" value="Above 60" name="age"><label for="senior" class="light">Senior (60 or older)</label>
                     </div>
                 </div>
 
@@ -176,8 +176,8 @@
                     </div>
                     <div>
                         <label>Are you associated with a wheelchair?</label>
-                        <input type="radio" id="yes" value="yes" name="yes_no"><label class="light" for="Yes">Yes</label><br>
-                        <input type="radio" id="no" value="no" name="yes_no"><label class="light" for="No">No</label>
+                        <input type="radio" id="yes" value="Yes" name="yes_no"><label class="light" for="yes">Yes</label><br>
+                        <input type="radio" id="no" value="No" name="yes_no"><label class="light" for="no">No</label>
                     </div>
                 </div>
             </fieldset>

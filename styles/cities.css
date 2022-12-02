@@ -154,6 +154,15 @@ input.search-bar {
     background-size: cover;   */
     background-color: rgba(0, 0, 0, 0.2);  
     border-radius: 10px;  
+    display: flex;
+    align-items: center;
+}
+
+.city-overlay {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
 }
 
 .city-details h2 {

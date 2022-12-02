@@ -79,13 +79,17 @@ $s = $_SESSION['email'];
 
                     $uvi = $uvContents['value'];
 
-                    if ($weatherType == "Rain") {
-                        $background = "../assets/rain.jpg";
-                    } else if ($weatherType == "Snow") {
-                        $background = "../assets/winter.jpg";
-                    } else {
-                        $background = "../assets/spring.jpg";
-                    }
+                    $background = "https://source.unsplash.com/1600x900/?" . $weatherType;
+
+                    // if ($weatherType == "Rain") {
+                    //     $background = "./assets/rain.jpg";
+                    // } else if ($weatherType == "Snow") {
+                    //     $background = "./assets/winter.jpg";
+                    // } else if ($weatherType == 'Sunny') {
+                    //     $background = "./assets/summer.jpg";
+                    // } else {
+                    //     $background = "./assets/spring.jpg";
+                    // }
                 } else {
 
                     $error = "That city does not exist! Please try again";
@@ -123,74 +127,83 @@ $s = $_SESSION['email'];
 
             ?>
             <div class="weather-details">
-                <div class="city-details">
-                    <h2>
-                        <?php
-                        if ($station) {
-                            echo "Weather in " . $station;
-                        }
-                        ?>
-                    </h2>
-                    <h1>
-                        <?php
-                        if ($station) {
-                            echo $weather;
-                        }
-                        ?>
-                    </h1>
-                    <div class="city-info">
-                        <div class="city-info-1">
-                            <p>
-                                <?php
-                                if ($humid) {
-                                    echo "<img src='./assets/icons/humidity.png' alt='humidity' alt='humidity' /> " . $humid . "%";
-                                }
-                                ?>
-                            </p>
-                            <p>
-                                <?php
-                                if ($speed) {
-                                    echo "<img src='./assets/icons/wind.png' alt='wind' /> " . $speed . " m/s";
-                                }
-                                ?>
-                            </p>
-                        </div>
-                        <div class="city-info-2">
-                            <p>
-                                <?php
-                                if ($aqi) {
-                                    echo "<img src='./assets/icons/air-quality.png' alt='air quality' /> " . $aqi;
-                                } else {
-                                    echo "N/A";
-                                }
-                                ?>
-                            </p>
-                            <p>
-                                <?php
-                                if ($uvi) {
-                                    echo "<img src='./assets/icons/uvi.png' alt='uv index' /> " . $uvi;
-                                }
-                                ?>
-                            </p>
-                        </div>
+                <div class="city-details" style="background: url(<?php if ($background) {
+                                                                        echo $background;
+                                                                    } else if(empty($background)) {
+                                                                        $background = './assets/quote.png';
+                                                                        echo $background;
+                                                                    } ?>) no-repeat center center; 
+                                                                    background-size: 100% 100%;
+                                                                     background-color: rgba(0,0,0,0.2);">
+                    <div class="city-overlay">
+                        <h2>
+                            <?php
+                            if ($station) {
+                                echo "Weather in " . ucfirst($station);
+                            }
+                            ?>
+                        </h2>
+                        <h1>
+                            <?php
+                            if ($station) {
+                                echo $weather;
+                            }   
+                            ?>
+                        </h1>
+                        <div class="city-info">
+                            <div class="city-info-1">
+                                <p>
+                                    <?php
+                                    if ($humid) {
+                                        echo "<img src='./assets/icons/humidity.png' alt='humidity' alt='humidity' /> " . $humid . "%";
+                                    }
+                                    ?>
+                                </p>
+                                <p>
+                                    <?php
+                                    if ($speed) {
+                                        echo "<img src='./assets/icons/wind.png' alt='wind' /> " . $speed . " m/s";
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                            <div class="city-info-2">
+                                <p>
+                                    <?php
+                                    if ($aqi) {
+                                        echo "<img src='./assets/icons/air-quality.png' alt='air quality' /> " . $aqi;
+                                    }
+                                    ?>
+                                </p>
+                                <p>
+                                    <?php
+                                    if ($uvi) {
+                                        echo "<img src='./assets/icons/uvi.png' alt='uv index' /> " . $uvi;
+                                    }
+                                    ?>
+                                </p>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
                 <div class="user-details">
-                    <p class="med-alert">Alerts <?php if($alertIcon) { echo $alertIcon; } ?></p>
-                        <?php
-                        if ($medcon) {
-                            $correctMedical = "";
-                            $medi = explode(',', $m);
-                            foreach ($medi as $medval) {
-                                if (!empty($medval)) {
-                                    echo "<p class='med-alert-msg'>For " . $medval . ": " . $advise . "</p>";
-                                }
+                    <p class="med-alert">Alerts <?php if ($alertIcon) {
+                                                    echo $alertIcon;
+                                                } ?></p>
+                    <?php
+                    if ($medcon) {
+                        $correctMedical = "";
+                        $medi = explode(',', $m);
+                        foreach ($medi as $medval) {
+                            if (!empty($medval)) {
+                                echo "<p class='med-alert-msg'>For " . $medval . ": " . $advise . "</p>";
                             }
-                        } else {
-                            echo "<p class='med-alert-msg'>" . $advise . "</p>";
                         }
-                        ?>
+                    } else {
+                        echo "<p class='med-alert-msg'>" . $advise . "</p>";
+                    }
+                    ?>
                     </p>
                 </div>
             </div>

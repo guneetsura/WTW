@@ -122,8 +122,8 @@ session_start();
             <fieldset>
 
                 <legend><span class="number">2</span> Your medical profile (optional)</legend>
-                <label>Medical Conditions specified: <?php echo $m; ?></label>
-                <label>Associated with a wheelchair? <?php echo $w; ?></label>
+                <label>Medical Conditions specified: <?php if (!empty($m)) { echo $m; } else { echo "Not specified"; } ?></label>
+                <label>Associated with a wheelchair? <?php if (!empty($w)) { echo $w; } else { echo "Not specified"; } ?></label>
 
             </fieldset>
 

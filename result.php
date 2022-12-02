@@ -110,7 +110,7 @@ session_start();
                 <h2 class="city">
                     <?php
                     if ($weather) {
-                        echo "Weather in " . $_POST['city'];
+                        echo "Weather in " . ucfirst($_POST['city']);
                     } else if ($error) {
                         echo $error;
                     }
