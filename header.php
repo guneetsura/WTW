@@ -29,8 +29,8 @@
                 if (isset($_SESSION['email'])) {
 
                     echo "
-                    <a href='account.php'><button class='account-btn'><img src='https://img.icons8.com/material-outlined/96/null/user--v1.png'/></button></a>
-                    <a href='logout.php' class='login'><button type='submit' class='account-btn logout'><img src='https://img.icons8.com/external-sbts2018-blue-sbts2018/58/null/external-logout-social-media-basic-1-sbts2018-blue-sbts2018.png'/></button></a>";
+                    <a href='account.php'><button class='account-btn'><img src='./assets/icons/account.png'/></button></a>
+                    <a href='logout.php' class='login'><button type='submit' class='account-btn logout'><img src='./assets/icons/logout.png'/></button></a>";
                 } else {
                     echo "<a class='login' href='login.php'><button class='login-btn btn'>Login</button></a>
                             <a href='register.php'><button class='signup-btn btn'>Sign Up</button></a>";
