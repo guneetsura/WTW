@@ -111,7 +111,7 @@ $s = $_SESSION['email'];
                         // echo $val . " ";
                         if ($val == 'Asthama' && $aqi > 150 || $val == 'Skin Disease' && $uvi > 7 || $val == 'Cancer' && $uvi > 7 || $val == 'Photophobia' && $weatherType == 'Sunny') {
                             $medcon .= $val . ",";
-                            $advise = "Not Advised to travel!";
+                            $advise = "<img src='./assets/icons/warning.png' alt='alert' />Not Advised to travel!";
                         } else {
                             $medcon .= $val . ",";
                         }
@@ -141,14 +141,14 @@ $s = $_SESSION['email'];
                             <p>
                                 <?php
                                 if ($humid) {
-                                    echo "<img src='https://img.icons8.com/external-vectorslab-flat-vectorslab/53/null/external-humidity-weather-and-season-vectorslab-flat-vectorslab.png' alt='humidity' /> " . $humid . "%";
+                                    echo "<img src='./assets/icons/humidity.png' alt='humidity' alt='humidity' /> " . $humid . "%";
                                 }
                                 ?>
                             </p>
                             <p>
                                 <?php
                                 if ($speed) {
-                                    echo "<img src='https://img.icons8.com/nolan/64/wind.png' alt='wind' /> " . $speed . " m/s";
+                                    echo "<img src='./assets/icons/wind.png' alt='wind' /> " . $speed . " m/s";
                                 }
                                 ?>
                             </p>
@@ -157,7 +157,7 @@ $s = $_SESSION['email'];
                             <p>
                                 <?php
                                 if ($aqi) {
-                                    echo "<img src='https://img.icons8.com/color-glass/96/null/air-quality.png'/> " . $aqi;
+                                    echo "<img src='./assets/icons/air-quality.png' alt='air quality' /> " . $aqi;
                                 } else {
                                     echo "N/A";
                                 }
@@ -166,7 +166,7 @@ $s = $_SESSION['email'];
                             <p>
                                 <?php
                                 if ($uvi) {
-                                    echo "<img src='https://img.icons8.com/external-justicon-flat-justicon/64/null/external-uv-index-weather-justicon-flat-justicon.png'/> " . $uvi;
+                                    echo "<img src='./assets/icons/uvi.png' alt='uv index' /> " . $uvi;
                                 }
                                 ?>
                             </p>
@@ -196,7 +196,7 @@ $s = $_SESSION['email'];
             <div class="safety">
                 <h2>Recommendations</h2>
                 <div class="safety-info umbrella">
-                    <img src="https://img.icons8.com/external-photo3ideastudio-gradient-photo3ideastudio/64/null/external-umbrella-spring-photo3ideastudio-gradient-photo3ideastudio.png" />Umbrella
+                    <img src="./assets/icons/umbrella.png" />Umbrella
                     <?php if (!$station) {
                         echo ("<span class='recommend'>N/A</span>");
                     } else if ($weatherType == 'Rain') {
@@ -207,7 +207,7 @@ $s = $_SESSION['email'];
                     ?>
                 </div>
                 <div class="safety-info sunscreen">
-                    <img src="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/64/null/external-sunscreen-cosmetics-icongeek26-outline-gradient-icongeek26.png" />Sunscreen
+                    <img src="./assets/icons/sunscreen.png" />Sunscreen
                     <?php if (!$station) {
                         echo ("<span class='recommend'>N/A</span>");
                     } else if ($uvi > 2) {
@@ -217,7 +217,7 @@ $s = $_SESSION['email'];
                     } ?>
                 </div>
                 <div class="safety-info clothing">
-                    <img src="https://img.icons8.com/nolan/64/clothes.png" />Clothing
+                    <img src="./assets/icons/clothes.png" />Clothing
                     <?php if (!$station) {
                         echo ("<span class='recommend'>N/A</span>");
                     } else if ($weather > 20) {
@@ -227,7 +227,7 @@ $s = $_SESSION['email'];
                     } ?>
                 </div>
                 <div class="safety-info heat-stroke">
-                    <img src="https://img.icons8.com/nolan/64/temperature.png" />Heat Stroke
+                    <img src="./assets/icons/temperature.png" />Heat Stroke
                     <?php if (!$station) {
                         echo ("<span class='recommend'>N/A</span>");
                     } else if ($weather > 34) {
@@ -237,7 +237,7 @@ $s = $_SESSION['email'];
                     } ?>
                 </div>
                 <div class="safety-info mask">
-                    <img src="https://img.icons8.com/external-xnimrodx-lineal-gradient-xnimrodx/64/null/external-mask-virus-xnimrodx-lineal-gradient-xnimrodx-2.png" />Mask
+                    <img src="./assets/icons/mask.png" />Mask
                     <?php if (!$station) {
                         echo ("<span class='recommend'>N/A</span>");
                     } else if ($aqi > 150) {
