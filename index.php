@@ -1,185 +1,57 @@
-
 <?php
-	require 'config.php';
-    $nameErr = $emailErr = $genderErr = $passwordErr = $ageErr = "";
-    $name = $email = $gender = $age = $password = "";
+session_start();
+?>
+<?php
 
-	if(isset($_POST['submitButton'])) {
-
-        set_error_handler(function (int $errno, string $errstr) {
-            if ((strpos($errstr, 'Undefined array key') === false) && (strpos($errstr, 'Undefined variable') === false)) {
-                return false;
-            } else {
-                return true;
-            }
-        }, E_WARNING);
-    
-        
-            $nameErr = $emailErr = $genderErr = $passwordErr = $ageErr = "";
-            $name = $email = $gender = $age = $password = "";
-
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $name =($_POST["name"]);
-                $email =($_POST["email"]);
-                $age =($_POST["age"]);
-                $password =($_POST["password"]);
-                $gender =($_POST["gender"]);
-            }
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-                    $name = $_POST["name"];
-                    if (empty($name)) {
-                        $nameErr = "Name is required!";
-                    } elseif ((!preg_match("/^[a-zA-z]*$/", $name))) {
-                        $nameErr = "Please insert valid name!";
-                    } else {
-                        $name =($_POST["name"]);
-                    }
-            
-                    $email = $_POST["email"];
-                    if (empty($email)) {
-                        $emailErr = "Email is required";
-                    } elseif ((!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email))) {
-                        $emailErr = "Enter valid email";
-                    } else {
-                        $email =($_POST["email"]);
-                    }
-            
-                    $password = $_POST["password"];
-                    if (empty($_POST["password"])) {
-                        $passwordErr = "Please type a password";
-                    } elseif (strlen($password) < 9) {
-                        $passwordErr = "Please keep a minimum length of 8";
-                    } else {
-                        $password =($_POST["password"]);
-                    }
-            
-                    $age = $_POST["age"];
-                    if (empty($_POST["age"])) {
-                        $ageErr = "Please select an age";
-                    } else {
-                        $age =($_POST["age"]);
-                    }
-            
-                    $gender = $_POST["gender"];
-                    if (empty($_POST["gender"])) {
-                        $genderErr = "Gender is required";
-                    } else {
-                        $gender =($_POST["gender"]);
-                    }
-
-		if($nameErr == "" && $passwordErr == "" && $emailErr == "" && $genderErr == "" && $ageErr == ""){
-			try {
-				$stmt = $connect->prepare('INSERT INTO registration(name,email,password,gender,age) VALUES (:name, :email, :password, :gender,:age)');
-				$stmt->execute(array(
-					':name' => $name,
-					':email' => $email,
-                    ':password' => $password,
-                    ':gender'=>$gender,
-					':age' => $age
-                    
-					));
-				header('Location:weather.php');
-				exit;
-			}
-			catch(PDOException $e) {
-				echo $e->getMessage();
-			}
-		}
-	}
+if (isset($_POST['city']) && ($_POST['city'] !="")){
+    $_SESSION['city']=$_POST['city'];
 }
 ?>
-
-
-
-
+<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="./styles/light.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./styles/style.php">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+    <title>What's The Weather</title>
+    <style>
+        body {
+            background: url("assets/background.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
 </head>
 
-
-
 <body>
-
-    <form action="" method="post">
-
-        <h1>Sign Up</h1>
-
-        <fieldset>
-
-            <legend><span class="number">1</span> Your basic info</legend>
-
-            <label for="name">Name: <span class="error">* <?php echo $nameErr; ?></span></label>
-            <input type="text" id="name" name="name">
-
-            <label for="email">Email: <span class="error">* <?php echo $emailErr; ?></span></label>
-            <input type="text" id="email" name="email">
-
-            <label for="password">Password: <span class="error">* <?php echo $passwordErr; ?></span></label>
-            <input type="password" id="password" name="password">
-            
-            <div class="flex-radio">
-                <div>
-                    <label>Gender <span class="error">* <?php echo $genderErr; ?></span></label>
-                    <input type="radio" id="male" value="Male" name="gender"><label for="yes" class="light">Male</label><br>
-                    <input type="radio" id="female" value="Female" name="gender"><label for="female" class="light">Female</label><br>
-                    <input type="radio" id="other" value="Other" name="gender"><label for="other" class="light">Other</label>
-                </div>
-                <div>
-                    <label>Age: <span class="error">* <?php echo $ageErr; ?></span></label>
-                    <input type="radio" id="under_18" value="under_18" name="age"><label for="under_18" class="light">Under 18</label><br>
-                    <input type="radio" id="over_18" value="over_18" name="age"><label for="over_18" class="light">Adult (18 or Older)</label><br>
-                    <input type="radio" id="senior" value="senior" name="age"><label for="senior" class="light">Senior (60 or older)</label>
-                </div>
+    <?php include 'header.php' ?>
+    <?php
+    set_error_handler(function (int $errno, string $errstr) {
+        if ((strpos($errstr, 'Undefined array key') === false) && (strpos($errstr, 'Undefined variable') === false)) {
+            return false;
+        } else {
+            return true;
+        }
+    }, E_WARNING);
+    ?>
+    <section id="search-page">
+        <form method="POST" action="result.php">
+            <div class="search">
+                <input type="text" class="search-bar" placeholder="Search Location" name="city" id="city" value="<?php echo $_POST['city']; ?>" required>
+                <button class="search-btn" type="submit"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+                    </svg></button>
             </div>
-
-        </fieldset>
-
-        <fieldset>
-
-        <legend><span class="number">2</span> Your go to weather:</legend>
-        <div class="flex-radio">
-                <div>
-                    <label>Check the types of weather you'd like to travel:</label><br>
-                    <input type="checkbox" id="summer" value="summer" name="summer"><label class="light" for="summer">Summer</label></tab>
-                    <input type="checkbox" id="winter" value="winter" name="winter"><label class="light" for="winter">Winter</label></tab>
-                    <input type="checkbox" id="rainy" value="rainy" name="rainy"><label class="light" for="rainy">Rainy</label></tab>
-                    <input type="checkbox" id="fall" value="fall" name="fall"><label class="light" for="fall">Fall</label><br>
-                </div>
-
-    </fieldset>
-
-        <fieldset>
-
-            <legend><span class="number">3</span> Your medical profile (optional)</legend>
-
-            <div class="flex-radio">
-                <div>
-                    <label>Check if you have any of the following conditions</label><br>
-                    <input type="checkbox" id="asthama" value="asthama" name="asthama"><label class="light" for="asthama">Breathing problems (Asthama,Dust Allergy etc)</label><br>
-                    <input type="checkbox" id="photophobia" value="photophobia" name="photophobia"><label class="light" for="photophobia">Discomfort in bright light (Photophobia,Migraine etc)</label><br>
-                    <input type="checkbox" id="skin_disease" value="skin_disease" name="skin_disease"><label class="light" for="skin_disease">Skin disease</label><br>
-                    <input type="checkbox" id="cancer" value="cancer" name="cancer"><label class="light" for="cancer">Cancer</label><br>
-                </div>
-                <div>
-                    <label>Are/Do you want to be associated with a wheelchair?</label>
-                    <input type="radio" id="yes" value="yes" name="yes_no"><label class="light" for="yes">Yes</label><br>
-                    <input type="radio" id="no" value="no" name="yes_no"><label class="light" for="no">No</label>
-                </div>
-
-        </fieldset>
-
-        <button type="submit" name="submitButton" id="submitButton">Sign Up</button>
-
-    </form>
-
+        </form>
+    </section>
 </body>
 
 </html>
