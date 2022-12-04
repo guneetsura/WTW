@@ -47,7 +47,7 @@
 						$_SESSION['email'] = $data['email'];
 						$_SESSION['password'] = $data['password'];
 
-						header('Location:weather.php');
+						header('Location:index.php');
 						exit;
 					}
 					else

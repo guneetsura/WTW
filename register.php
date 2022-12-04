@@ -116,7 +116,7 @@
                         ':wheelchair' => $wheelchair
 
                     ));
-                    header('Location:weather.php');
+                    header('Location:index.php');
                     exit;
                 } catch (PDOException $e) {
                     echo $e->getMessage();

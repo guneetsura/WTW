@@ -10,7 +10,7 @@
             <img class="logo" src="assets/Logo.svg" alt="logo">
             <nav>
                 <ul class="nav-links">
-                    <li><a href="weather.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="cities.php">Cities</a></li>
                     <li><a href="about.php">Contact</a></li>
                 </ul>
