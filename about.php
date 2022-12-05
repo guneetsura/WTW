@@ -36,6 +36,24 @@ $mail = new PHPMailer(true);
 
 try {
     if (isset($_POST['submit'])) {
+
+        $name = $_POST['name'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+
+            try {
+                require 'config.php';
+                $stmt = $connect->prepare('INSERT INTO contact(name,email,subject,message) VALUES (:name, :email, :subject, :message)');
+                $stmt->execute(array(
+                    ':name' => $name,
+                    ':email' => $s,
+                    ':subject' => $subject,
+                    ':message' => $message,
+                ));
+
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
         //Server settings
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
@@ -53,7 +71,7 @@ try {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Thanks for Contacting us @WTW';
-        $mail->Body    = 'This is to acknowledge you that your input has been recieved! Our team will reach out to you as soon as possible.<br><br>Peace!<br>WTW';
+        $mail->Body    = 'Hello! This is to acknowledge you that your input has been recieved! Our team will reach out to you as soon as possible.<br><br>Peace!<br>WTW';
         $mail->AltBody = 'This is to acknowledge you that your input has been recieved! Our team will reach out to you as soon as possible. Peace!';
 
         header("Location:about.php");
